@@ -1,0 +1,4 @@
+mat_info, buy_info = [int(x) for x in input().split()], [int(y) for y in input().split()]
+print(max(min(buy_info[0],min(mat_info[0],mat_info[2])+min(mat_info[1],mat_info[3]))+min(buy_info[1],min(mat_info[0]-min(mat_info[0],mat_info[2]),mat_info[3]-min(mat_info[3],mat_info[1]))+min(mat_info[1]-min(mat_info[1],mat_info[3]),mat_info[2]-min(mat_info[2],mat_info[0]))),min(buy_info[1],min(mat_info[0],mat_info[3])+min(mat_info[1],mat_info[2]))+min(buy_info[0],min(mat_info[0]-min(mat_info[0],mat_info[3]),mat_info[2]-min(mat_info[2],mat_info[1]))+min(mat_info[1]-min(mat_info[1],mat_info[2]),mat_info[3]-min(mat_info[3],mat_info[0])))))
+# Passed
+# 70% from compiler error
