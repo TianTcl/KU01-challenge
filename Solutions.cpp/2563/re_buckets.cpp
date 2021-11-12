@@ -1,36 +1,49 @@
-#include <iostream>
-#include <vector>
-#include <map>
-#include <algorithm>
+#include <bits/stdc++.h>
+#define st first
+#define nd second
 using namespace std;
-
-struct Pair {
-    int min;
-    int max;
-};
-
-struct Tree {
-    int number;
-    Pair size;
-    vector<int> child;
-};
+int ontop[302]={};
+vector <int> saw;
+vector <pair<int,int>> ondown;
+pair <int,int> box[302];
 
 int main() {
-    int n,m; cin >> n >> m;
-        vector<Tree> tree;
-    for (int i=0; i < n ; i++) {
-        Pair tmp;
-        cin >> tmp.min >> tmp.max;
-        Tree tree_tmp;
-        tree_tmp.number = i;
-        tree_tmp.size = tmp;
-        tree_tmp.child = vector<int>();
-        for (int j=0;j<tree.size();j++) {
-            if (tmp.min > tree[j].size.min && tree[j].size.max > tmp.max) {
-                tree[j].child.push_back(i);
+    int n,m,z,mxr,res=0;
+    cin >> n >> m;
+    for(int i=1;i<=n;i++) {
+        int x,y;
+        cin >> x >> y;
+        box[i]={x,y};
+        ondown.push_back({y-x,i});
+    }
+    sort(ondown.begin(),ondown.end());
+    while(m--) {
+        cin >> z;
+        ontop[z]=1;
+    }
+    for(auto it:ondown) {
+        mxr=0;
+        int i=it.nd;
+        for(int x=1;x<=n;x++) {
+            if(!ontop[x]) continue;
+            if(box[i].st<=box[x].st && box[i].nd>=box[x].nd) {
+                saw.push_back(x);
             }
         }
-        tree.push_back(tree_tmp);
+        if(saw.size()==1) {
+            saw.clear();
+            continue;
+        }
+        for(auto x:saw) ontop[x]=0;
+        ontop[i]=saw.size();
+        saw.clear();
     }
-    
+    for(int i=1;i<=n;i++) {
+        if(ontop[i]) {
+            res++;
+            saw.push_back(i);
+        }
+    }
+    cout << res << '\n';
+    for(auto x:saw) cout << x << ' ';
 }
