@@ -9,15 +9,23 @@
 # Failed
 # 0% [-----TTTTT]
 
-[amt_dna, amt_req], amt_huge = [int(a) for a in input().split()], 0
-ifo_req, ifo_dup = dict([(int(b), []) for b in range(amt_dna)]), dict([(int(c), 0) for c in range(amt_dna)])
-for each_req in range(amt_req):
-    [ifo_start, ifo_stop] = [int(d) for d in input().split()]
-    for ifo_pos in range(ifo_start, ifo_stop):
-        ifo_req[ifo_pos].append(each_req)
-        ifo_dup[ifo_pos] += 1
-for each_req in ifo_req.values():
-    if set(ifo_req[list(ifo_dup.values()).index(max(ifo_dup.values()))]).issubset(set(each_req)): amt_huge = max(amt_huge, len(set(each_req)))
-print(amt_huge)
+# [amt_dna, amt_req], amt_huge = [int(a) for a in input().split()], 0
+# ifo_req, ifo_dup = dict([(int(b), []) for b in range(amt_dna)]), dict([(int(c), 0) for c in range(amt_dna)])
+# for each_req in range(amt_req):
+#     [ifo_start, ifo_stop] = [int(d) for d in input().split()]
+#     for ifo_pos in range(ifo_start, ifo_stop):
+#         ifo_req[ifo_pos].append(each_req)
+#         ifo_dup[ifo_pos] += 1
+# for each_req in ifo_req.values():
+#     if set(ifo_req[list(ifo_dup.values()).index(max(ifo_dup.values()))]).issubset(set(each_req)): amt_huge = max(amt_huge, len(set(each_req)))
+# print(amt_huge)
 # Passed
 # 30% [ --PPPTTTTT ]
+
+[amt_dna, amt_req] = [int(a) for a in input().split()]
+ifo_dna = [0 for a in range(amt_dna)]
+for each_req in range(amt_req):
+    [ifo_start, ifo_stop] = [int(b) for b in input().split()]
+    for ifo_pos in range(ifo_start-1, ifo_stop): ifo_dna[ifo_pos] += 1
+print(max(ifo_dna))
+# Passed
