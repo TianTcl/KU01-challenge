@@ -23,7 +23,7 @@ for prime in range(3, limC*3+1, 2): # limF*3+(0 if limF%2 else 1)
                     # for num2 in range(num1, limC+1):
                     #     num3 = prime-num1-num2
                     #     if num2<=num3 and num3<=limC: triples += 1
-                    # # Calculate pair
+                    # Calculate pair
                     num2 = num1
                     num3 = prime-num1-num2
                     if num3>limC:
